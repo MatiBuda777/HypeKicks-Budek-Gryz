@@ -8,24 +8,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="#FFFFFF">
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/sneakers_searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:queryHint="Szukaj butów"
         android:iconifiedByDefault="false"
-        android:background="@android:color/transparent"
+        android:background="@color/search"
         android:layout_marginBottom="10dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shoesRecyclerView"
+    <GridView
+        android:id="@+id/sneakers_gridView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_height="match_parent"
+        android:verticalSpacing="16dp"
+        android:horizontalSpacing="16dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth" />
 
 </LinearLayout>
