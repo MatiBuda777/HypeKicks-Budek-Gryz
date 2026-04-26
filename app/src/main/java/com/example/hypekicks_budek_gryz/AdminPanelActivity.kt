@@ -1,6 +1,7 @@
 package com.example.hypekicks_budek_gryz
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,6 +13,7 @@ class AdminPanelActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     private val sneakers = mutableListOf<String>()
+    private val sneakerIds = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,29 +58,24 @@ class AdminPanelActivity : AppCompatActivity() {
                     Toast.makeText(this, "Dodano do bazy!", Toast.LENGTH_SHORT).show()
                     loadSneakers()
                 }
-                .addOnFailureListener {
+                .addOnFailureListener { e ->
+                    Log.e("ADMIN_ERROR", "Błąd dodawania", e)
                     Toast.makeText(this, "Błąd dodawania!", Toast.LENGTH_SHORT).show()
                 }
         }
 
         listView.setOnItemLongClickListener { _, _, position, _ ->
-            val item = sneakers[position]
-            val parts = item.split(" - ")
-            val brand = parts[0]
-            val model = parts[1]
+            val docId = sneakerIds[position]
 
             db.collection("sneakers")
-                .whereEqualTo("brand", brand)
-                .whereEqualTo("modelName", model)
-                .get()
-                .addOnSuccessListener { docs ->
-                    for (doc in docs) {
-                        db.collection("sneakers").document(doc.id).delete()
-                    }
+                .document(docId)
+                .delete()
+                .addOnSuccessListener {
                     Toast.makeText(this, "Usunięto z bazy!", Toast.LENGTH_SHORT).show()
                     loadSneakers()
                 }
-                .addOnFailureListener {
+                .addOnFailureListener { e ->
+                    Log.e("ADMIN_ERROR", "Błąd usuwania", e)
                     Toast.makeText(this, "Błąd podczas usuwania!", Toast.LENGTH_SHORT).show()
                 }
 
@@ -91,14 +88,20 @@ class AdminPanelActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { result ->
                 sneakers.clear()
+                sneakerIds.clear()
 
                 for (doc in result) {
                     val brand = doc.getString("brand") ?: ""
                     val model = doc.getString("modelName") ?: ""
+
                     sneakers.add("$brand - $model")
+                    sneakerIds.add(doc.id)
                 }
 
                 adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                Log.e("ADMIN_ERROR", "Błąd pobierania", e)
             }
     }
 }
