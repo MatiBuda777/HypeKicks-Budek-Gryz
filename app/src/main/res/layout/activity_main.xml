@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/sneakers_searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:queryHint="Szukaj butów"
-        android:iconifiedByDefault="false"
-        android:background="@color/search"
-        android:layout_marginBottom="10dp"/>
+    <data>
 
-    <GridView
-        android:id="@+id/sneakers_gridView"
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="16dp"
-        android:padding="16dp"
-        android:gravity="center"
-        android:stretchMode="columnWidth" />
+        tools:context=".MainActivity"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
 
-</LinearLayout>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sneakers_searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:queryHint="Szukaj butów"
+            android:iconifiedByDefault="false"
+            android:background="@color/search"
+            android:layout_marginBottom="10dp"/>
+
+        <GridView
+            android:id="@+id/sneakers_gridView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:verticalSpacing="16dp"
+            android:horizontalSpacing="16dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth" />
+
+    </LinearLayout>
+
+</layout>
