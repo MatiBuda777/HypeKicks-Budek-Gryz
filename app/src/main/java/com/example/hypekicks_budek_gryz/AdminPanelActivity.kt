@@ -60,6 +60,30 @@ class AdminPanelActivity : AppCompatActivity() {
                     Toast.makeText(this, "Błąd dodawania!", Toast.LENGTH_SHORT).show()
                 }
         }
+
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+            val item = sneakers[position]
+            val parts = item.split(" - ")
+            val brand = parts[0]
+            val model = parts[1]
+
+            db.collection("sneakers")
+                .whereEqualTo("brand", brand)
+                .whereEqualTo("modelName", model)
+                .get()
+                .addOnSuccessListener { docs ->
+                    for (doc in docs) {
+                        db.collection("sneakers").document(doc.id).delete()
+                    }
+                    Toast.makeText(this, "Usunięto z bazy!", Toast.LENGTH_SHORT).show()
+                    loadSneakers()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Błąd podczas usuwania!", Toast.LENGTH_SHORT).show()
+                }
+
+            true
+        }
     }
 
     private fun loadSneakers() {
