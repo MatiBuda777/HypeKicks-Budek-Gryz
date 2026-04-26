@@ -15,6 +15,13 @@
         android:orientation="vertical"
         android:background="#FFFFFF">
 
+        <Button
+            android:id="@+id/openAdminButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Panel Admina"
+            android:layout_margin="16dp"/>
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sneakers_searchView"
             android:layout_width="match_parent"

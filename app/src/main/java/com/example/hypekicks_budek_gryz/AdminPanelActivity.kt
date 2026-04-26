@@ -79,6 +79,9 @@ class AdminPanelActivity : AppCompatActivity() {
                     Toast.makeText(this, "Błąd podczas usuwania!", Toast.LENGTH_SHORT).show()
                 }
 
+            Log.d("ADMIN_DEBUG", "Usuwam dokument ID: $docId")
+
+
             true
         }
     }

@@ -1,7 +1,10 @@
 package com.example.hypekicks_budek_gryz
 
+import android.content.Intent
+import android.widget.EditText
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +34,14 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        seedDataBase()
+        val adminButton = findViewById<Button>(R.id.openAdminButton)
+
+        adminButton.setOnClickListener {
+            showAdminLoginDialog()
+        }
+
+
+//        seedDataBase()
 
         allSneakersList = mutableListOf()
         sneakersList = mutableListOf()
@@ -58,6 +68,31 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    private fun showAdminLoginDialog() {
+        val editText = EditText(this)
+        editText.inputType = android.text.InputType.TYPE_CLASS_TEXT or
+                android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        val dialog = android.app.AlertDialog.Builder(this)
+            .setTitle("Logowanie admina")
+            .setMessage("Podaj hasło:")
+            .setView(editText)
+            .setPositiveButton("OK") { _, _ ->
+                val entered = editText.text.toString()
+
+                if (entered == "haslo123") {
+                    startActivity(Intent(this, AdminPanelActivity::class.java))
+                } else {
+                    Toast.makeText(this, "Błędne hasło!", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Anuluj", null)
+            .create()
+
+        dialog.show()
+    }
+
 
     private fun seedDataBase() {
         val sneakers = listOf(
