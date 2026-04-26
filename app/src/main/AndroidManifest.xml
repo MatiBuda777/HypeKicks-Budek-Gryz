@@ -12,6 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HypeKicksBudekGryz">
         <activity
+            android:name=".AdminPanelActivity"
+            android:exported="false"
+            android:label="@string/title_activity_admin_panel"
+            android:theme="@style/Theme.HypeKicksBudekGryz" />
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/Theme.HypeKicksBudekGryz" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
