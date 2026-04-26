@@ -1,8 +1,7 @@
 package com.example.hypekicks_budek_gryz
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -22,7 +21,45 @@ class AdminPanelActivity : AppCompatActivity() {
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sneakers)
         listView.adapter = adapter
 
+        val brandInput = findViewById<EditText>(R.id.brandInput)
+        val modelInput = findViewById<EditText>(R.id.modelInput)
+        val priceInput = findViewById<EditText>(R.id.priceInput)
+        val yearInput = findViewById<EditText>(R.id.yearInput)
+        val imageUrlInput = findViewById<EditText>(R.id.imageUrlInput)
+        val addButton = findViewById<Button>(R.id.addButton)
+
         loadSneakers()
+
+        addButton.setOnClickListener {
+            val brand = brandInput.text.toString()
+            val model = modelInput.text.toString()
+            val price = priceInput.text.toString().toFloatOrNull() ?: 0f
+            val year = yearInput.text.toString()
+            val imageUrl = imageUrlInput.text.toString()
+
+            if (brand.isEmpty() || model.isEmpty()) {
+                Toast.makeText(this, "Uzupełnij markę i model!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val sneaker = hashMapOf(
+                "brand" to brand,
+                "modelName" to model,
+                "resellPrice" to price,
+                "releaseYear" to year,
+                "imageUrl" to imageUrl
+            )
+
+            db.collection("sneakers")
+                .add(sneaker)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Dodano do bazy!", Toast.LENGTH_SHORT).show()
+                    loadSneakers()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Błąd dodawania!", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
     private fun loadSneakers() {

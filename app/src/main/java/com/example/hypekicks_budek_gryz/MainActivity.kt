@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        seedDataBase()
+//        seedDataBase()
 
         allSneakersList = mutableListOf()
         sneakersList = mutableListOf()
