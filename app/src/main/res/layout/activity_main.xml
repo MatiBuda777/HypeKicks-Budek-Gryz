@@ -38,6 +38,7 @@
             android:layout_height="match_parent"
             android:verticalSpacing="16dp"
             android:horizontalSpacing="16dp"
+            android:numColumns="2"
             android:padding="16dp"
             android:gravity="center"
             android:stretchMode="columnWidth" />

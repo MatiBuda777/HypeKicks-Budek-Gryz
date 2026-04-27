@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HypeKicksBudekGryz">
         <activity
+            android:name=".SneakerDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminPanelActivity"
             android:exported="false"
             android:label="@string/title_activity_admin_panel"

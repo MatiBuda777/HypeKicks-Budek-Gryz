@@ -1,6 +1,7 @@
 package com.example.hypekicks_budek_gryz
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,6 @@ class SneakerAdapter (
             val inflater = LayoutInflater.from(context)
             binding = ItemSneakerBinding.inflate(inflater, parent, false)
             view = binding.root
-
             view.tag = binding
         } else {
             view = convertView
@@ -43,6 +43,14 @@ class SneakerAdapter (
             .load(sneaker.imageUrl)
             .placeholder(R.mipmap.ic_launcher)
             .into(binding.itemImageView)
+
+        view.setOnClickListener{
+            val intent = Intent(context, SneakerDetailsActivity::class.java)
+            intent.putExtra("brand", sneaker.brand)
+            intent.putExtra("model", sneaker.modelName)
+            intent.putExtra("imageUrl", sneaker.imageUrl)
+            context.startActivity(intent)
+        }
 
         return view
     }

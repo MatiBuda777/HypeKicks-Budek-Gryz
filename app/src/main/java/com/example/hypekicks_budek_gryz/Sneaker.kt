@@ -6,4 +6,4 @@ class Sneaker(
     val resellPrice: Float = 0F,
     val releaseYear: String = "",
     val imageUrl: String = "" // linki z 'Postimages.org'
-)
+) : java.io.Serializable
