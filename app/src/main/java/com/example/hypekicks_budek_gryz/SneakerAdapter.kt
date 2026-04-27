@@ -49,6 +49,7 @@ class SneakerAdapter (
             intent.putExtra("brand", sneaker.brand)
             intent.putExtra("model", sneaker.modelName)
             intent.putExtra("imageUrl", sneaker.imageUrl)
+            intent.putExtra("price", sneaker.resellPrice.toString())
             context.startActivity(intent)
         }
 

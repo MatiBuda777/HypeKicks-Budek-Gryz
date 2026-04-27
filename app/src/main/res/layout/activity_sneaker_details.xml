@@ -42,20 +42,13 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
-            android:id="@+id/detailsDescription"
-            android:layout_width="match_parent"
+            android:id="@+id/detailsPrice"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Opis produktu..."
-            android:textSize="16sp"
-            android:layout_marginTop="16dp" />
+            android:text="Model"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp" />
 
-<!--        <Button-->
-<!--            android:id="@+id/returnToMain"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="#FF0000"-->
-<!--            android:text="Powrót"-->
-<!--            />-->
 
     </LinearLayout>
 

@@ -27,9 +27,11 @@ class SneakerDetailsActivity : AppCompatActivity() {
         val brand = intent.getStringExtra("brand")
         val model = intent.getStringExtra("model")
         val imageUrl = intent.getStringExtra("imageUrl")
+        val price = intent.getStringExtra("price")
 
         binding.detailsBrand.text = brand
         binding.detailsModel.text = model
+        binding.detailsPrice.text = "$price zł"
 
         Glide.with(this)
             .load(imageUrl)
